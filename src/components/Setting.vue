@@ -22,12 +22,18 @@
         padding-top: 10px;
     }
     .left-menu {
-        width: 100px;
+        width: 100px;height: 100%;
         position: absolute;
         text-align: center;
+        background: #999999;
         .menu {
             height: 50px;
             line-height: 50px;
+        }
+        .menu :hover{
+            height: 50px;
+            line-height: 50px;
+            background:#CCCCCC; 
         }
     }
 }
