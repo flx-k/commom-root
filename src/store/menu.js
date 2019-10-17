@@ -1,16 +1,23 @@
 const menu = {
   state: {
-      arr:[]
+      arr:[],
+      activedArr:[],
   },
   getters:{
-    arr:state=>{
+    menuArrs:state=>{
         return state.arr;
+    },
+    activeMenuArrs:state=>{
+      return state.activedArr;
     }
   },
   mutations: {
     set(state,path){
-        state.arr=path.split('/');
-        console.info(state.arr);
+        state.activedArr=path.split('/');
+        console.info(state.activedArr);
+    },
+    initMenu(state,arr){
+      state.arr=arr
     }
   },
   actions: {

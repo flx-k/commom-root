@@ -53,6 +53,10 @@ export default {
             msg: 'Welcome to Your Vue.js App'
         }
     },
+    mounted(){
+        this.$store.commit('set',this.$route.path)
+
+    },
     methods: {
         gotoPath(path) {
             this.activeMenu=path;

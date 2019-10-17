@@ -4,25 +4,14 @@
         <div id="main-menu">
             <div>
                 <div class="logo">
-                    <!-- <Spin size="large"></Spin> -->
-                    <!-- <Icon type="ios-briefcase" size="30" /> -->
                 </div>
-                <div class="menu" :class="[activeIndex=='work'?'select':'']" @click="gotoPath('work')">
-                    menu1
-                    <!-- <Icon type="ios-briefcase" size="30" /> -->
-                </div>
-                <div class="menu" :class="[activeIndex=='date-base'?'select':'']" @click="gotoPath('date-base')">
-                    menu2
-                    <!-- <Icon type="ios-albums" size="30" /> -->
-                </div>
-                <div class="menu" :class="[activeIndex=='setting'?'select':'']" @click="gotoPath('setting')">
-                    menu3
-                    <!-- <Icon type="md-settings" size="30" /> -->
+                <div v-for="menu in $store.getters.menuArrs" :key="menu.id" class="menu" :class="[$store.getters.activeMenuArrs[1]==menu.id?'select':'']" @click="gotoPath(menu.path)">
+                    {{menu.title}}
                 </div>
             </div>
         </div>
         <div class="view">
-            <div class="header"></div>
+            <div class="header">{{$store.getters.activeMenuArrs}}</div>
             <router-view class="view-body"></router-view>
         </div>
     </div>
@@ -34,10 +23,33 @@ export default {
     name: 'App',
     data() {
         return {
-            activeIndex: '/',
+            activeIndex: '/', 
         };
     },
+    mounted(){
+        this.setMenu();
+        this.$store.commit('set',this.$route.path) 
+    },
     methods: {
+        setMenu(){
+            let arr=[
+                {
+                    id:'work',
+                    path:'work',
+                    title:'工作'
+                },
+                {
+                    id:'data-base',
+                    path:'data-base',
+                    title:'数据库'
+                },{
+                    id:'setting',
+                    path:'setting',
+                    title:'设置'
+                }
+            ]
+             this.$store.commit('initMenu',arr)
+        },
         gotoPath(path) {
             this.activeIndex=path
             this.$router.push({
@@ -69,6 +81,8 @@ export default {
                 background: #666666;
                 height: 50px;
                 width: 100%;
+                color: #ffffff;
+                line-height: 50px;
             }
 
             .view-body {
