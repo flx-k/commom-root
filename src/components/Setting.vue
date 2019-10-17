@@ -25,7 +25,7 @@
         width: 100px;height: 100%;
         position: absolute;
         text-align: center;
-        background: #999999;
+        background: #bbbbbb;
         .menu {
             height: 50px;
             line-height: 50px;
@@ -38,7 +38,7 @@
         .menu.select{
             height: 50px;
             line-height: 50px;
-            background:#cccccc; 
+            background:#eeeeee; 
         }
     }
 }

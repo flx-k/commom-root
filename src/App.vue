@@ -96,7 +96,7 @@ export default {
             width: 50px;
             height: 100%;
             position: absolute;
-            background: #333333;
+            background: #222222;
 
             .logo {
                 color: #ffffff;
@@ -111,18 +111,20 @@ export default {
                 height: 50px;
                 line-height: 50px;
                 text-align: center;
-                color: #ffffff;
+                color: #f5f5f5;
             }
             .menu.select {
+                font-weight:bold;
                     color: black;
                     background: #999999;
                 }
 
             .menu:hover {
-                // transform: scale(1.2);
-                transition: all .75s;
-                color: black;
-                background: #777777;
+                transform: scale(1.05);
+                transition: all .5s;
+                color: whitesmoke;
+                background: #333333;
+                
             }
 
         }
