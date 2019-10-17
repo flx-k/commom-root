@@ -1,6 +1,6 @@
 <template>
 <div class="theme-page">
-    <ColorPicker v-model="color1" />
+   <Divider orientation="left"></Divider>
 </div>
 </template>
 
