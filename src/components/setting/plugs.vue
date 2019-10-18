@@ -29,10 +29,7 @@ export default {
         }
     },
     mounted(){
-      console.info(this.$route.path)
-      // this.$store.commit('set')
-
-      this.$store.commit('set',this.$route.path)
+        this.$store.commit('menu/setPath',this.$route.path) 
     }
 }
 </script>

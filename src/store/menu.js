@@ -1,24 +1,23 @@
 const menu = {
+  namespaced: true,
   state: {
-      arr:[],
+      menuArrs:[],
       activedArr:[],
-  },
-  getters:{
-    menuArrs:state=>{
-        return state.arr;
-    },
-    activeMenuArrs:state=>{
-      return state.activedArr;
-    }
+      submenuMap:{},
   },
   mutations: {
-    set(state,path){
+    setPath(state,path){
         state.activedArr=path.split('/');
         console.info(state.activedArr);
     },
     initMenu(state,arr){
-      state.arr=arr
-    }
+      state.menuArrs=arr
+      arr.forEach(m => {
+        state.submenuMap[m.id]=m.submenu
+      });
+      console.info(JSON.stringify(state.submenuMap))
+    },
+    
   },
   actions: {
 

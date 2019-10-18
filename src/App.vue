@@ -3,15 +3,16 @@
     <div id="body">
         <div id="main-menu">
             <div>
-                <div class="logo">
-                </div>
-                <div v-for="menu in $store.getters.menuArrs" :key="menu.id" class="menu" :class="[$store.getters.activeMenuArrs[1]==menu.id?'select':'']" @click="gotoPath(menu.path)">
-                    {{menu.title}}
+                <div class="logo"></div>
+                <div v-for="menu in menuArrs" :key="menu.id" class="menu" :class="[
+              $store.getters.activeMenuArrs[1] == menu.id ? 'select' : ''
+            ]" @click="gotoPath(menu.path)">
+                    {{ menu.title }}
                 </div>
             </div>
         </div>
         <div class="view">
-            <div class="header">{{$store.getters.activeMenuArrs}}</div>
+            <div class="header">{{ activeMenuArrs }}</div>
             <router-view class="view-body"></router-view>
         </div>
     </div>
@@ -19,45 +20,61 @@
 </template>
 
 <script>
+import {
+    mapGetters
+} from "vuex";
 export default {
-    name: 'App',
+    name: "App",
     data() {
-        return {
-            activeIndex: '/', 
-        };
+        return {};
     },
-    mounted(){
+    computed: {
+        ...mapGetters(["menuArrs", "activeMenuArrs"])
+    },
+    mounted() {
         this.setMenu();
-        this.$store.commit('set',this.$route.path) 
+        this.$store.commit("menu/setPath", this.$route.path);
     },
     methods: {
-        setMenu(){
-            let arr=[
-                {
-                    id:'work',
-                    path:'work',
-                    title:'工作'
+        setMenu() {
+            let arr = [{
+                    id: "work",
+                    path: "work",
+                    title: "工作"
                 },
                 {
-                    id:'data-base',
-                    path:'data-base',
-                    title:'数据库'
-                },{
-                    id:'setting',
-                    path:'setting',
-                    title:'设置'
+                    id: "data-base",
+                    path: "data-base",
+                    title: "数据库"
+                },
+                {
+                    id: "setting",
+                    path: "setting",
+                    title: "设置",
+                    submenu: [{
+                        id: 'authority',
+                        path: 'authority',
+                        title: '权限',
+                    }, {
+                        id: 'theme',
+                        path: 'theme',
+                        title: '主题',
+                    }, {
+                        id: 'plugs',
+                        path: 'plugs',
+                        title: '插件',
+                    }]
                 }
-            ]
-             this.$store.commit('initMenu',arr)
+            ];
+            this.$store.commit("menu/initMenu", arr);
         },
         gotoPath(path) {
-            this.activeIndex=path
             this.$router.push({
                 path: "/" + path
             });
         }
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -103,7 +120,7 @@ export default {
                 width: 100%;
                 height: 50px;
                 line-height: 50px;
-                text-align: center
+                text-align: center;
             }
 
             .menu {
@@ -113,22 +130,20 @@ export default {
                 text-align: center;
                 color: #f5f5f5;
             }
+
             .menu.select {
-                font-weight:bold;
-                    color: black;
-                    background: #999999;
-                }
+                font-weight: bold;
+                color: black;
+                background: #999999;
+            }
 
             .menu:hover {
                 transform: scale(1.05);
-                transition: all .5s;
+                transition: all 0.5s;
                 color: whitesmoke;
                 background: #333333;
-                
             }
-
         }
     }
-
 }
 </style>

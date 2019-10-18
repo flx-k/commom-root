@@ -9,12 +9,52 @@ export default new Router({
     {
       path: '/',
       name: '首页',
-      component:  welcom => require(['@/components/Null'], welcom),
+      component:  welcom => require(['@/components/1null'], welcom),
     },
     {
       path: '/setting',
       name: '首页',
       component:  welcom => require(['@/components/Setting'], welcom),
+      children:[
+        {
+          path: 'theme',
+          name: '主题',
+          component:  welcom => require(['@/components/setting/theme'], welcom),
+        },{
+          path: 'authority',
+          name: '权限',
+          component:  welcom => require(['@/components/setting/authority'], welcom),
+        },{
+          path: 'plugs',
+          name: '插件',
+          component:  welcom => require(['@/components/setting/plugs'], welcom),
+        },
+      ]
+    },
+    {
+      path: '/work',
+      name: '首页',
+      component:  welcom => require(['@/components/Work'], welcom),
+      children:[
+        {
+          path: 'theme',
+          name: '主题',
+          component:  welcom => require(['@/components/setting/theme'], welcom),
+        },{
+          path: 'authority',
+          name: '权限',
+          component:  welcom => require(['@/components/setting/authority'], welcom),
+        },{
+          path: 'plugs',
+          name: '插件',
+          component:  welcom => require(['@/components/setting/plugs'], welcom),
+        },
+      ]
+    },
+    {
+      path: '/data-base',
+      name: '首页',
+      component:  welcom => require(['@/components/Data-base'], welcom),
       children:[
         {
           path: 'theme',
