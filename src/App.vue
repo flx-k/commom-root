@@ -4,9 +4,9 @@
         <div id="main-menu">
             <div>
                 <div class="logo"></div>
-                <div v-for="menu in menuArrs" :key="menu.id" class="menu" :class="[
-              $store.getters.activeMenuArrs[1] == menu.id ? 'select' : ''
-            ]" @click="gotoPath(menu.path)">
+                <div v-for="menu in menuArrs" :key="menu.id" class="menu"
+                :class="[$store.getters.activeMenuArrs[1] == menu.id ? 'select' : '']" 
+                @click="gotoPath(menu.path)">
                     {{ menu.title }}
                 </div>
             </div>
