@@ -57,17 +57,13 @@ export default new Router({
       component:  welcom => require(['@/components/Data-base'], welcom),
       children:[
         {
-          path: 'theme',
-          name: '主题',
-          component:  welcom => require(['@/components/setting/theme'], welcom),
+          path: 'list',
+          name: '表',
+          component:  welcom => require(['@/components/data-base/list'], welcom),
         },{
-          path: 'authority',
-          name: '权限',
-          component:  welcom => require(['@/components/setting/authority'], welcom),
-        },{
-          path: 'plugs',
+          path: 'list/:tableId',
           name: '插件',
-          component:  welcom => require(['@/components/setting/plugs'], welcom),
+          component:  welcom => require(['@/components/data-base/list'], welcom),
         },
       ]
     }

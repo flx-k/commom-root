@@ -9,13 +9,15 @@ import 'iview/dist/styles/iview.css';
 import { Image,Switch} from 'element-ui';
 import Vuex from 'vuex'
 import store from './store'
+import axios from 'axios'
+import {post,fetch,patch,put} from './util/http'
+import formatDate from './util/time'
 Vue.use(Vuex)
 Vue.use(iView);
 Vue.use(Image)
 Vue.use(Switch)
-
 Vue.config.productionTip = false
-
+Vue.prototype.$post=post;
 /* eslint-disable no-new */
 router.beforeEach((to, from, next) => {
   iView.LoadingBar.start();

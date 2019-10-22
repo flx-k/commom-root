@@ -1,7 +1,11 @@
 <template>
 <div id="setting-page">
     <div class="left-menu">
-        <div class="menu" :class="[activeMenu==='authority'?'select':'']" @click="gotoPath('authority')">authority</div>
+        <div style="height:50px;"></div>
+        <div class="menu" v-for="submenu in submenuArrs" :key="submenu.id" 
+        :class="[submenu.id===activeMenuArrs[2]?'select':'']" 
+        @click="gotoPath(submenu.path)">{{submenu.title}}</div>
+
     </div>
     <div class="view">
         <router-view class="view-body"></router-view>
@@ -43,6 +47,9 @@
 </style>
 
 <script>
+import {
+    mapGetters
+} from "vuex";
 export default {
     name: 'HelloWorld',
     data() {
@@ -51,6 +58,9 @@ export default {
             msg: 'Welcome to Your Vue.js App'
         }
     },
+    computed: {
+        ...mapGetters(["submenuArrs", "activeMenuArrs"])
+    },
     mounted(){
         this.$store.commit('menu/setPath',this.$route.path)
     },
@@ -58,7 +68,7 @@ export default {
         gotoPath(path) {
             this.activeMenu=path;
             this.$router.push({
-                path: '/setting/' + path
+                path: '/data-base/' + path
             });
         }
     }

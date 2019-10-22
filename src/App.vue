@@ -45,7 +45,12 @@ export default {
                 {
                     id: "data-base",
                     path: "data-base",
-                    title: "数据库"
+                    title: "数据库",
+                    submenu: [{
+                        id: 'test',
+                        path: 'list',
+                        title: '测试',
+                    }]
                 },
                 {
                     id: "setting",
